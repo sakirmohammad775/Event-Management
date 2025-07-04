@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex flex-col items-center justify-center h-screen bg-gray-100">
+
+    <h1 class="text-4xl font-bold mb-5 text-center">Discover. Connect. Celebrate.</h1>
+    
+    <div class="flex justify-center space-x-5">
+        <div class="bg-gray-800 text-white p-5 rounded-lg text-4xl text-center">
+            <span id="days">83</span>
+            <div class="text-sm uppercase">Days</div>
+        </div>
+        <div class="text-4xl text-purple-600">:</div>
+        <div class="bg-gray-800 text-white p-5 rounded-lg text-4xl text-center">
+            <span id="hours">07</span>
+            <div class="text-sm uppercase">Hours</div>
+        </div>
+        <div class="text-4xl text-purple-600">:</div>
+        <div class="bg-gray-800 text-white p-5 rounded-lg text-4xl text-center">
+            <span id="minutes">48</span>
+            <div class="text-sm uppercase">Minutes</div>
+        </div>
+        <div class="text-4xl text-purple-600">:</div>
+        <div class="bg-gray-800 text-white p-5 rounded-lg text-4xl text-center">
+            <span id="seconds">46</span>
+            <div class="text-sm uppercase">Seconds</div>
+        </div>
+        
+    </div>
+    <img src="{% static 'images/usa.jpg' %}" alt="">
+
+    <script>
+        // Set the date we're counting down to
+        const countdownDate = new Date("December 31, 2023 23:59:59").getTime();
+
+        // Update the countdown every 1 second
+        const countdownFunction = setInterval(function() {
+            // Get the current date and time
+            const now = new Date().getTime();
+            
+            // Find the distance between now and the countdown date
+            const distance = countdownDate - now;
+            
+            // Time calculations for days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Output the result in the respective spans
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+            // If the countdown is over, write some text
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("days").innerHTML = "EXPIRED";
+                document.getElementById("hours").innerHTML = "";
+                document.getElementById("minutes").innerHTML = "";
+                document.getElementById("seconds").innerHTML = "";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>

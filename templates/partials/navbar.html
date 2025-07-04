@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Tailwind & DaisyUI CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      plugins: [daisyui]
+    }
+  </script>
+
+  <title>Apex Summit 2025</title>
+</head>
+
+<body class="text-white">
+
+  <!-- Full Background Image Section -->
+  <div class="min-h-screen bg-cover bg-center" style="background-image: url('{% static 'images/usa.jpg' %}');">
+
+    <!-- Responsive container with max width 1440px -->
+    <div class="mx-auto max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1440px] px-4 md:px-8">
+
+      <!-- NAVBAR -->
+      <header class="flex justify-between py-6">
+        <div class="text-3xl font-bold">apex</div>
+        <nav class="space-x-4">
+          <a href="#" class="hover:underline">Sessions</a>
+          <a href="#" class="hover:underline">About</a>
+          <a href="#" class="hover:underline">Speakers</a>
+          <button class="btn btn-primary">Register</button>
+        </nav>
+      </header>
+
+      <!-- HERO Section -->
+      <main class="flex flex-col items-center justify-center py-20">
+        <h1 class="text-4xl md:text-6xl font-bold text-center">2025 Apex Summit</h1>
+        <p class="mt-4 text-lg">September 25 - 27 | San Francisco, California</p>
+        <div class="mt-6 space-x-4">
+          <button class="btn btn-secondary">Register Now</button>
+          <button class="btn btn-outline">View Sessions</button>
+        </div>
+      </main>
+
+
+      <!-- FOOTER -->
+      <footer class="py-6 text-center">
+        &copy; 2025 Apex Summit. All rights reserved.
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+</html>

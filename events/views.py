@@ -3,13 +3,9 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse('welcome to the task')
+    return render (request, 'home.html')
 
-def index(request):
-    return render(request, 'index.html')
-
-def contact( request):
-    return HttpResponse('contact us')
-
-def show_events(request):
-    return HttpResponse('ji',show_events)
+def about(request):
+    return render(request, 'about.html')
+def manager(request):
+    return render(request, 'home.html')
