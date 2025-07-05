@@ -1,15 +1,67 @@
-{% load static %}
-<div class="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Card Title</h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .event {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .date {
+            background-color: #f8a300;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .details {
+            margin: 10px 0;
+        }
+        .detail-item {
+            margin: 5px 0;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="event">
+    <div class="date">
+        <h2>26 JUNE</h2>
     </div>
-  </div>
+
+    <h1>Barcelona Food Truck Festival 2018-2019</h1>
+    <p class="details">
+        <span class="detail-item">Tickets from $52</span><br>
+        <span class="detail-item">Start Time: 20:00pm - 22:00pm</span><br>
+        <span class="detail-item">Location: Manhattan, New York</span>
+    </p>
+    <a href="#" class="button">TICKETS & DETAILS</a>
 </div>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind + DaisyUI (CDN build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      plugins: [daisyui],
+      theme: {
+        extend: {
+          container: {
+            center: true,
+            padding: "1rem",
+            screens: {
+              lg: "1440px",   /* hard cap at 1440 px */
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <title>Organizer Dashboard</title>
+</head>
+
+<body class="min-h-screen bg-gradient-to-tr from-indigo-100 via-sky-100 to-emerald-100">
+
+  <!-- Page title -->
+  <header class="container py-8 text-center">
+    <h1 class="text-3xl md:text-5xl font-extrabold text-gray-800 drop-shadow">
+      Organizer Dashboard
+    </h1>
+  </header>
+
+  <!-- Stats grid -->
+  <section class="container grid grid-cols-2 md:grid-cols-4 gap-6">
+    <!-- Card → add `data-filter="today|all|upcoming|past"` for JS -->
+    <button
+      class="stat-card"
+      data-filter="all"
+    >
+      <h2 class="stat-label">Total Participants</h2>
+      <p class="stat-value" id="total-participants">300</p>
+      <p class="stat-sub">111 last month</p>
+    </button>
+
+    <button
+      class="stat-card"
+      data-filter="all"
+    >
+      <h2 class="stat-label">Total Events</h2>
+      <p class="stat-value" id="total-events">10</p>
+      <p class="stat-sub">5 last month</p>
+    </button>
+
+    <button
+      class="stat-card"
+      data-filter="upcoming"
+    >
+      <h2 class="stat-label">Upcoming Events</h2>
+      <p class="stat-value" id="upcoming-events">4</p>
+      <p class="stat-sub">2 last month</p>
+    </button>
+
+    <button
+      class="stat-card"
+      data-filter="past"
+    >
+      <h2 class="stat-label">Past Events</h2>
+      <p class="stat-value" id="past-events">6</p>
+      <p class="stat-sub">3 last month</p>
+    </button>
+  </section>
+
+  <!-- Event list -->
+  <section class="container mt-10">
+    <h2 class="text-2xl font-semibold mb-4 text-gray-700">
+      <span id="list-title">Today's Events</span>
+    </h2>
+
+    <ul id="event-list" class="space-y-3">
+      <!-- Dynamically filled by JS -->
+      <li class="event-item">Event A</li>
+      <li class="event-item">Event B</li>
+      <li class="event-item">Event C</li>
+    </ul>
+  </section>
+
+ 
+
+  <!-- Simple JS to swap lists (replace with AJAX/HTMX later) -->
+  <script>
+  // Dummy data
+  const EVENTS = {
+    today:     ["Event A", "Event B", "Event C"],
+    upcoming:  ["Event D", "Event E"],
+    past:      ["Event A", "Event B"]
+  };
+
+  // Handle clicks on stat cards
+  document.querySelectorAll(".stat-card").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter || "today";
+      updateEventList(filter);
+    });
+  });
+
+  function updateEventList(filter){
+    const list = document.getElementById("event-list");
+    const title = document.getElementById("list-title");
+    list.innerHTML = "";                   // clear list
+    (EVENTS[filter] || []).forEach(ev => {
+      const li = document.createElement("li");
+      li.className = "event-item";
+      li.textContent = ev;
+      list.appendChild(li);
+    });
+    title.textContent =
+      filter === "upcoming" ? "Upcoming Events" :
+      filter === "past"     ? "Past Events" :
+                              "Today's Events";
+  }
+  </script>
+
+</body>
+</html>
